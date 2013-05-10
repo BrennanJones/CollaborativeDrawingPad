@@ -18,8 +18,9 @@ This tool includes some basic functionality, including the ablility for multiple
 * Ability to clear the drawing pad
 * Server saves the state of the drawing pad, so new clients will be presented with the current state of the drawing pad
 
-Features I plan to implement:
+Features to implement:
 
+* Eraser
 * Multiple colours
 * Different style brushes / stroke patterns
 * Touch support
