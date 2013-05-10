@@ -13,6 +13,7 @@ In the root directory of the source, run the command 'node app.js' to start the 
 This tool includes some basic functionality, including the ablility for multiple users to draw together on a shared drawing space. The following has been implemented so far:
 
 * Basic drawing
+* Multiple colours
 * Change thickness of strokes (does not work as hoped, but still gives a neat effect)
 * Ability to see other users drawing and other users' cursors
 * Ability to clear the drawing pad
