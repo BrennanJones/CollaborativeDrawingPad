@@ -1,0 +1,27 @@
+CollaborativeDrawingPad
+=======================
+
+A collaborative drawing pad tool created with client-side HTML5/JavaScript and server-side NodeJS JavaScript.
+
+This drawing tool is based off code by Martin Angelov (http://tutorialzine.com/2012/08/nodejs-drawing-game/). To run this tool, you need NodeJS and you need the following NodeJS packages:
+
+1) socket.io
+2) node-static
+
+In the root directory of the source, run the command 'node app.js' to start the server on port 8080. To connect clients, simply open a web browser (with HTML5 and JavaScript support) and connect to localhost:8080 (or [your_ip_address]:8080).
+
+This tool includes some basic functionality, including the ablility for multiple users to draw together on a shared drawing space. The following has been implemented so far:
+
+* Basic drawing
+* Change thickness of strokes (does not work as hoped, but still gives a neat effect)
+* Ability to see other users drawing and other users' cursors
+* Ability to clear the drawing pad
+* Server saves the state of the drawing pad, so new clients will be presented with the current state of the drawing pad
+
+Features I plan to implement:
+
+* Multiple colours
+* Different style brushes / stroke patterns
+* Touch support
+* Ability to save images
+* Ability to uniquely identify users based on name and cursor colour
