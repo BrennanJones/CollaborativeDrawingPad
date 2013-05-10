@@ -26,6 +26,8 @@ function handler(request, response) {
 	});
 }
 
+io.set('log level', 1);
+
 var drawnPaths = {};
 var numPaths = 0;
 

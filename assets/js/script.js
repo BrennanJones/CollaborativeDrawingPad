@@ -30,11 +30,21 @@ $(function() {
 		ctx = canvas[0].getContext('2d');
 	
 	var thicknessSlider = $('#thicknessSlider'),
-	    clearButton = $('#clearButton');
+	    clearButton = $('#clearButton'),
+		blackPalette = $('#blackPalette'),
+		yellowPalette = $('#yellowPalette'),
+		brownPalette = $('#brownPalette'),
+		redPalette = $('#redPalette'),
+		violetPalette = $('#violetPalette'),
+		bluePalette = $('#bluePalette'),
+		greenPalette = $('#greenPalette'),
+		currentColourIndicator = $('#currentColourIndicator');
 	
 	var id = Math.round($.now()*Math.random());
 	
 	var drawing = false;
+	
+	var colour = 'black';
 	
 	var clients = {};
 	var cursors = {};
@@ -61,7 +71,7 @@ $(function() {
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer.
 			
-			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, data.thickness);
+			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, data.colour, data.thickness);
 		}
 		
 		// Save the current client state.
@@ -100,6 +110,7 @@ $(function() {
 				'y': canvasCoords.y,
 				'drawing': drawing,
 				'id': id,
+				'colour': colour,
 				'thickness': thickness
 			});
 			lastEmit = $.now();
@@ -109,7 +120,7 @@ $(function() {
 		// not received in the socket.on('moving') event above.
 		
 		if (drawing) {
-			drawLine(prev.x, prev.y, canvasCoords.x, canvasCoords.y, thickness);
+			drawLine(prev.x, prev.y, canvasCoords.x, canvasCoords.y, colour, thickness);
 			
 			prev.x = canvasCoords.x;
 			prev.y = canvasCoords.y;
@@ -124,6 +135,34 @@ $(function() {
 		socket.emit('clear', {});
 	});
 	
+	blackPalette.on('click', function() {
+		changeColour('black');
+	});
+	
+	yellowPalette.on('click', function() {
+		changeColour('yellow');
+	});
+	
+	brownPalette.on('click', function() {
+		changeColour('brown');
+	});
+	
+	redPalette.on('click', function() {
+		changeColour('red');
+	});
+	
+	violetPalette.on('click', function() {
+		changeColour('violet');
+	});
+	
+	bluePalette.on('click', function() {
+		changeColour('blue');
+	});
+	
+	greenPalette.on('click', function() {
+		changeColour('green');
+	});
+	
 	// Remove inactive clients after 5 minutes of inactivity.
 	setInterval(function() {
 		for (ident in clients) {
@@ -135,12 +174,12 @@ $(function() {
 		}
 	}, 300000);
 	
-	function drawLine(fromX, fromY, toX, toY, thickness) {
+	function drawLine(fromX, fromY, toX, toY, colour, thickness) {
 		ctx.beginPath();
 		ctx.lineWidth = thickness;
-		ctx.lineHeight = thickness;
 		ctx.moveTo(fromX, fromY);
 		ctx.lineTo(toX, toY);
+		ctx.strokeStyle = colour;
 		ctx.stroke();
 	}
 	
@@ -156,5 +195,12 @@ $(function() {
 			x: canvasX * ( win.width() / canvasWidth ),
 			y: canvasY * ( (win.height() * 0.94) / canvasHeight )
 		};
+	}
+	
+	function changeColour(newColour) {
+		colour = newColour;
+		var indicatorCtx = currentColourIndicator[0].getContext('2d');
+		indicatorCtx.fillStyle = newColour;
+		indicatorCtx.fillRect(0,0,25,25);
 	}
 });

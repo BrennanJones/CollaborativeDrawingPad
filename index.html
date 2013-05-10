@@ -31,6 +31,16 @@
         	<div id="toolbar">
             	Thickness: <input id="thicknessSlider" type="range" min="1" max="100" value="1" width="200" />
                 <button type="button" id="clearButton">Clear</button>
+                Select colour: 
+                <canvas id="blackPalette" width="25" height="25"></canvas>
+                <canvas id="yellowPalette" width="25" height="25"></canvas>
+                <canvas id="brownPalette" width="25" height="25"></canvas>
+                <canvas id="redPalette" width="25" height="25"></canvas>
+                <canvas id="violetPalette" width="25" height="25"></canvas>
+                <canvas id="bluePalette" width="25" height="25"></canvas>
+                <canvas id="greenPalette" width="25" height="25"></canvas>
+                Current colour: 
+                <canvas id="currentColourIndicator" width="25" height="25"></canvas>
             </div>
         </div>
         
@@ -46,6 +56,71 @@
 						return e.preventDefault();
 					}
 				});
+				
+				/* DRAW PALETTE ELLIPSES */
+				
+				// Black
+				//var palette = $('#blackPalette');
+				var palette = document.getElementById('blackPalette');
+				var ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'black';
+				ctx.fill();
+				
+				// Yellow
+				palette = document.getElementById('yellowPalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'yellow';
+				ctx.fill();
+				
+				// Brown
+				palette = document.getElementById('brownPalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'brown';
+				ctx.fill();
+				
+				// Red
+				palette = document.getElementById('redPalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'red';
+				ctx.fill();
+				
+				// Violet
+				palette = document.getElementById('violetPalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'violet';
+				ctx.fill();
+				
+				// Blue
+				palette = document.getElementById('bluePalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'blue';
+				ctx.fill();
+				
+				// Green
+				palette = document.getElementById('greenPalette');
+				ctx = palette.getContext('2d');
+				ctx.beginPath();
+				ctx.arc(12,12,12,0,2*Math.PI);
+				ctx.fillStyle = 'green';
+				ctx.fill();
+				
+				/* FILL CURRENT COLOUR INDICATOR WITH DEFAULT COLOUR */
+				var indicator = document.getElementById('currentColourIndicator');
+				ctx = indicator.getContext('2d');
+				ctx.fillStyle = 'black';
+				ctx.fillRect(0,0,25,25);
 			});
 		</script>        
 	</body>
